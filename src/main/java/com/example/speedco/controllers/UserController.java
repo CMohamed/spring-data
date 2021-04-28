@@ -23,7 +23,7 @@ public class UserController {
 
     @GetMapping
     public List<User> getUsers() {
-        return null;
+        return userRepository.findAll();
     }
 
     // create a filter object
