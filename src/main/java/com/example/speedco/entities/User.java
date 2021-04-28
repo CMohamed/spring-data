@@ -15,6 +15,8 @@ public class User {
 
     private String email;
 
+    private Integer age;
+
     public Long getId() {
         return id;
     }
@@ -37,5 +39,13 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
     }
 }
