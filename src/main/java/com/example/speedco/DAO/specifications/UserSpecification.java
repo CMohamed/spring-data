@@ -13,6 +13,10 @@ public class UserSpecification implements Specification<User> {
 
     private SearchCriteria criteria;
 
+    public UserSpecification(SearchCriteria criteria) {
+        this.criteria = criteria;
+    }
+
     @Override
     public Predicate toPredicate(Root<User> root, CriteriaQuery<?> query, CriteriaBuilder builder) {
         if (criteria.getOperation().equalsIgnoreCase(">")) {

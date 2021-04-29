@@ -1,9 +1,13 @@
 package com.example.speedco.controllers;
 
 import com.example.speedco.DAO.repositories.UserRepository;
+import com.example.speedco.DAO.specifications.UserSpecification;
+import com.example.speedco.DAO.utils.SearchUtils;
+import com.example.speedco.DAO.utils.UserFilter;
 import com.example.speedco.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,8 +32,9 @@ public class UserController {
 
     // create a filter object
     @PostMapping("/filter")
-    public Page<User> getFilteredUsers() {
-        return null;
+    public List<User> getFilteredUsers(@RequestBody UserFilter userFilter) {
+        Specification<User> specification = SearchUtils.getSpec(userFilter);
+        return userRepository.findAll(specification);
     }
 
     @GetMapping("/id")
