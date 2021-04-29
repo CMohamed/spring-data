@@ -21,5 +21,5 @@ public interface UserRepository extends JpaRepository<User, Long>, JpaSpecificat
     // here we combine to conditions
     List<User> findAllByNameAndEmail(String name, String email);
 
-    List<User> findAllBy(Specification<User> specification);
+    List<User> findAll(Specification<User> specification);
 }
