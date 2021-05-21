@@ -37,10 +37,22 @@ public class UserController {
         return userRepository.findAll(specification);
     }
 
-    @GetMapping("/id")
+    @GetMapping("/{id}")
     public ResponseEntity<User> getUserById(@PathVariable Long id) {
         Optional<User> optionalUser = userRepository.findById(id);
         return optionalUser.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    @GetMapping("/jpql/{name}")
+    public ResponseEntity<List<User>> getUserByName(@PathVariable String name) {
+        List<User> users = userRepository.getUserByNameJPQL(name);
+        return ResponseEntity.ok(users);
+    }
+
+    @GetMapping("/sql/{name}")
+    public ResponseEntity<List<User>> getUserByNameNative(@PathVariable String name) {
+        List<User> users = userRepository.getUserByNameSQL(name);
+        return ResponseEntity.ok(users);
     }
 
     @PostMapping
